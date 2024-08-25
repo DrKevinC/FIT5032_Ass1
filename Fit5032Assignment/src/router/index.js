@@ -10,6 +10,8 @@ import DonateView from '@/views/DonateView.vue'
 import DiscussionView from '@/views/DiscussionView.vue'
 import DiscussionOverview from '@/views/DiscussionOverview.vue'
 import ContactView from '@/views/ContactView.vue'
+import RegisterView from '@/views/RegisterView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const routes = [
   {
@@ -66,6 +68,16 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: ContactView
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: RegisterView
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginView
   },
 ]
 

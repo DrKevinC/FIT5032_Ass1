@@ -1,9 +1,12 @@
-<script setup></script>
+<script setup>
+import { isLoggedIn, isEventManager } from '@/loginData';
+</script>
 
 <template>
   <!-- Using Bootstrap's Header template (starter code) -->
   <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
+    <h1 class="text-center mt-4">Client Charity Banner</h1>
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
@@ -26,6 +29,17 @@
         </li>
         <li class="nav-item">
           <router-link to="/donate" class="nav-link" active-class="active">Donate</router-link>
+        </li>
+        <li v-if="isEventManager" class="nav-item">
+          <router-link to="/eventManager" class="nav-link" active-class="active">Event Manager</router-link>
+        </li>
+      </ul>
+      <ul class="nav nav-pills">
+        <li v-if="!isLoggedIn" class="nav-item">
+          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+        </li>
+        <li v-if="!isLoggedIn" class="nav-item">
+          <router-link to="/register" class="nav-link" active-class="active">Register</router-link>
         </li>
       </ul>
     </header>

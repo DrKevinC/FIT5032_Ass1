@@ -1,12 +1,19 @@
 <template>
-    <div class="about">
-        <h1>Main Page (HomeView)</h1>
-        <p>This is a subheading</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <StaticPreview/>
+                <EventPreview/>
+                <DiscussionPreview/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-// No script needed for now
+import EventPreview from '@/components/EventPreview.vue';
+import StaticPreview from '@/components/StaticPreview.vue';
+import DiscussionPreview from '@/components/DiscussionPreview.vue';
 </script>
 
 <style>
