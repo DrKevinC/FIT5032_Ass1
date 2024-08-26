@@ -1,5 +1,12 @@
 <script setup>
-import { isLoggedIn, isEventManager } from '@/loginData';
+import { isLoggedIn, isEventManager, currentUser, logout } from '@/loginData';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+function headerLogout(){
+  logout()
+  router.push("/")
+}
 </script>
 
 <template>
@@ -35,11 +42,17 @@ import { isLoggedIn, isEventManager } from '@/loginData';
         </li>
       </ul>
       <ul class="nav nav-pills">
+        <li v-if="isLoggedIn">
+          <h8>{{ currentUser }}</h8>
+        </li>
         <li v-if="!isLoggedIn" class="nav-item">
           <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
         </li>
         <li v-if="!isLoggedIn" class="nav-item">
           <router-link to="/register" class="nav-link" active-class="active">Register</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <button @click="headerLogout" class="nav-link">Logout</button>
         </li>
       </ul>
     </header>

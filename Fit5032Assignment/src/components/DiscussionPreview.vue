@@ -6,7 +6,7 @@
         <div class="border border-black">
             <div class="border border-black border-1">
                 <div class="mx-2">
-                    <h10>Discussions</h10>
+                    <h8>Discussions</h8>
                 </div>
             </div>    
 
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border border-black">
                 <div class="container my-2">
                     <div class="row align-items-center">

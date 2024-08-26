@@ -7,7 +7,7 @@
 
             <div class="border border-black border-1">
                 <div class="mx-2">
-                    <h10>Events</h10>
+                    <h8>Events</h8>
                 </div>
             </div>
             
@@ -20,7 +20,7 @@
                         I need more info on how flexboxes work-->
                 </div>
 
-                <div class="border border-3 border-black">
+                <div class="border border-black">
                     <div class="mx-2">
                         <div class="center-text">
                             <h2>Event Title</h2>
@@ -39,7 +39,7 @@
                         I need more info on how flexboxes work-->
                 </div>
 
-                <div class="border border-3 border-black">
+                <div class="border border-black">
                     <div class="mx-2">
                         <div class="center-text">
                             <h2>Event Title</h2>

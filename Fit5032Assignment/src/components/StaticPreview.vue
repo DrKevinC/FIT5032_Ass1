@@ -11,7 +11,7 @@
                     <!--  class="img-fluid" could be added above but,
                     I need more info on how flexboxes work-->
             </div>
-            <div class="border border-3 border-black">
+            <div class="border border-black">
                 <div class="mx-2">
                     <h2>Static Webpage Preview</h2>
                     <p>Static webpage Preview Body Text</p>
