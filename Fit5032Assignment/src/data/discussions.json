@@ -20,7 +20,13 @@
             "tags": [],
             "title": "Pam's Garden Party",
             "body": "Come to Pam's garden party, bring a plate"
-        
+        },
+        {
+            "img": "https://thefisheriesblog.com/wp-content/uploads/2012/12/49b5c-bathtubchristmascarp2.jpg",
+            "imageAlt": "Carp in a bathtub",
+            "tags": [],
+            "title": "Indoor Carp Ranching",
+            "body": "For all your indoor ranching needs"
         }
     ]
 }

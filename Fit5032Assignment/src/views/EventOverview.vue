@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-10 offset-md-1">
                 <EventPreview :data="eventJSON" :length="0" :filter="false" />
             </div>
         </div>

@@ -31,6 +31,22 @@
                     "discussionId": 1
                 }
             ]
+        },
+        {
+            "user": "Admin",
+            "organisation": "Bedroom Beekeeping United",
+            "eventId":3,
+            "interactions": 24,
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7I0FAV3lw_UzcgmAMwzebYERuHBzCWn5xhQ&s",
+            "imageAlt": "Bees",
+            "eventName": "Bedroom Beekeeping Seminar",
+            "eventPreviewText": "Find out what's the buzz on bedroom beekeeping",
+            "eventBodyText": "Find out what's the buzz on bedroom beekeeping. Their soft buzzing will lull you to sleep and you'll gradually grow resistant to their poison.",
+            "linkedDiscussions": [
+                {
+                    "discussionId": 1
+                }
+            ]
         }
     ]
 }

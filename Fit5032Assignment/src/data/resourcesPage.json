@@ -1,0 +1,22 @@
+{
+   "pages": [
+    {
+        "image": "#",
+        "imageAlt": "",
+        "heading": "Resource 1",
+        "bodyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae gravida libero. Duis sed dui posuere nunc sodales sollicitudin. Morbi congue, eros non placerat dictum, ex odio posuere ex, vitae tempor neque neque a lectus. Aliquam efficitur iaculis molestie. Integer egestas, sem sit amet fermentum facilisis, dolor sem ullamcorper leo, ut ultrices urna augue eget arcu. Donec pulvinar ac mi volutpat pharetra. Phasellus vehicula urna massa, non ultrices nisi scelerisque volutpat. Cras auctor diam et mollis rhoncus. "
+    },
+    {
+        "image": "#",
+        "imageAlt": "",
+        "heading": "Resource 2",
+        "bodyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae gravida libero. Duis sed dui posuere nunc sodales sollicitudin. Morbi congue, eros non placerat dictum, ex odio posuere ex, vitae tempor neque neque a lectus. Aliquam efficitur iaculis molestie. Integer egestas, sem sit amet fermentum facilisis, dolor sem ullamcorper leo, ut ultrices urna augue eget arcu. Donec pulvinar ac mi volutpat pharetra. Phasellus vehicula urna massa, non ultrices nisi scelerisque volutpat. Cras auctor diam et mollis rhoncus."
+    },
+    {
+        "image": "#",
+        "imageAlt": "",
+        "heading": "Resource 3",
+        "bodyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae gravida libero. Duis sed dui posuere nunc sodales sollicitudin. Morbi congue, eros non placerat dictum, ex odio posuere ex, vitae tempor neque neque a lectus. Aliquam efficitur iaculis molestie. Integer egestas, sem sit amet fermentum facilisis, dolor sem ullamcorper leo, ut ultrices urna augue eget arcu. Donec pulvinar ac mi volutpat pharetra. Phasellus vehicula urna massa, non ultrices nisi scelerisque volutpat. Cras auctor diam et mollis rhoncus. "
+    }
+   ] 
+}

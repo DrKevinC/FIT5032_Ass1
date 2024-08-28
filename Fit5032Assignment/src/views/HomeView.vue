@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-10 offset-md-1">
                 <StaticPreview/>
                 <EventPreview :data="eventJSON" :length="3" :filter="false"/>
                 <DiscussionPreview :data="discussionJSON" :length="3" :filter="false" />
