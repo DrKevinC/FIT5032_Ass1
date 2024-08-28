@@ -1,0 +1,36 @@
+{
+    "events": [
+        {
+            "user": "Admin",
+            "organisation": "ElderConnect",
+            "eventId": 1,
+            "interactions": 10, 
+            "img": "#",
+            "imageAlt": "",
+            "eventName": "Event 1",
+            "eventPreviewText": "This is event 1! The first event, we'll be excited if everyone attends",
+            "eventBodyText": "This is event 1! The first event, we'll be excited if everyone attends. This is where we'll put extra information on the event as well",
+            "linkedDiscussions": [
+                {
+                    "discussionId": 1
+                }
+            ]
+        },
+        {
+            "user": "Admin",
+            "organisation": "Kant's Kunduggery",
+            "eventId":2,
+            "interactions": 5,
+            "img": "https://i.etsystatic.com/33550351/r/il/258e5c/3920872571/il_fullxfull.3920872571_68cs.jpg",
+            "imageAlt": "Three babybels go a smorffing",
+            "eventName": "Smorffing at the Kunduggery",
+            "eventPreviewText": "Lets go smorffing",
+            "eventBodyText": "Lets go smorffing!!",
+            "linkedDiscussions": [
+                {
+                    "discussionId": 1
+                }
+            ]
+        }
+    ]
+}

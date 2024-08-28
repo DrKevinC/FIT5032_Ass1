@@ -1,0 +1,26 @@
+{
+    "discussions": [
+        {
+            "img": "https://www.naturescolours.com.au/wp-content/uploads/2019/04/Monstera-Deliciosa-White-Ceramic-Pot-Set-210mm-1.jpg",
+            "imageAlt": "Picture of a plant",
+            "tags": [],
+            "title":"Gardening MegaThread",
+            "body":"Here's where everyone can talk about gardening!"
+        },
+        {
+            "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-zrW3AIlbYITY0plr4VZAv-EPabWyA2D8QP_fA9-phtbdUFinx59elDs9_QcU5QUieII&usqp=CAU",
+            "imageAlt": "Image of some wool",
+            "tags": [],
+            "title": "Knitting megathread",
+            "body": "We all love knitting here! Lets share what we do."
+        },
+        {
+            "img":"https://columbiacountyrecoverykitchen.org/wp-content/uploads/2021/07/Carole_Esther_Stuart-2-300x263.jpg",
+            "imageAlt": "Image of three people in a garden",
+            "tags": [],
+            "title": "Pam's Garden Party",
+            "body": "Come to Pam's garden party, bring a plate"
+        
+        }
+    ]
+}

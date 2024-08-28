@@ -43,7 +43,7 @@ function headerLogout(){
       </ul>
       <ul class="nav nav-pills">
         <li v-if="isLoggedIn">
-          <h8>{{ currentUser }}</h8>
+          <h5>{{ currentUser }}</h5>
         </li>
         <li v-if="!isLoggedIn" class="nav-item">
           <router-link to="/login" class="nav-link" active-class="active">Login</router-link>

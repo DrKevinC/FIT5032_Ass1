@@ -1,12 +1,16 @@
 <template>
-    <div class="about">
-        <h1>Event Overview</h1>
-        <p>This is a subheading</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <EventPreview :data="eventJSON" :length="0" :filter="false" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-// No script needed for now
+import EventPreview from '@/components/EventPreview.vue';
+import eventJSON from '@/data/events.json'
 </script>
 
 <style>

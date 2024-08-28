@@ -1,6 +1,6 @@
 <template>
     <div class="about">
-        <h1>Dissusion View</h1>
+        <h1>Discussion View</h1>
         <p>This is a subheading</p>
     </div>
 </template>

@@ -1,12 +1,16 @@
 <template>
-    <div class="about">
-        <h1>Discussions Overview</h1>
-        <p>This is a subheading</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <DiscussionPreview :data="discussionJSON" :length="0" :filter="true" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-// No script needed for now
+import DiscussionPreview from '@/components/DiscussionPreview.vue';
+import discussionJSON from '@/data/discussions.json';
 </script>
 
 <style>

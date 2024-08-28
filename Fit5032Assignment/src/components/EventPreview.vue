@@ -1,4 +1,30 @@
 <script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+    data: {
+        type: Object,
+        required: true
+    },
+    // how many to preview, 0 means all/infinite
+    length: {
+        type: Number,
+        required: true
+    },
+    // include advanced search features
+    filter: {
+        type: Boolean,
+        required: true
+    }
+})
+
+const trimmedEvents = computed(() => {
+    if (props.length <= 0){
+        return props.data.events
+    } else {
+        return props.data.events.slice(0, props.length)
+    }    
+})
 </script>
 
 <template>
@@ -7,43 +33,24 @@
 
             <div class="border border-black border-1">
                 <div class="mx-2">
-                    <h8>Events</h8>
+                    <h5>Events</h5>
                 </div>
             </div>
             
-            <div>
-                <div class="d-flex justify-content-center">
-                    <img width="800" height="100"
-                        src="https://www.bannerhealth.com/-/media/images/project/bh/hero-images/services/healthy-aging/healthy-aging-hero.ashx"
-                        alt="Some Old People"/>
-                        <!--  class="img-fluid" could be added above but,
-                        I need more info on how flexboxes work-->
-                </div>
-
-                <div class="border border-black">
-                    <div class="mx-2">
-                        <div class="center-text">
-                            <h2>Event Title</h2>
-                            <p>Event description</p>
-                        </div>
+            <div v-for="event in trimmedEvents" :key="event">
+                <div>
+                    <div class="d-flex justify-content-center">
+                        <img width="800" height="100"
+                            :src=event.img
+                            :alt=event.imageAlt>
                     </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="d-flex justify-content-center">
-                    <img width="800" height="100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvY2MBABVcq7xK7KTbi9wsZ4BDHzEJR0yvnw&s"
-                        alt="Senior Couple Gardening"/>
-                        <!--  class="img-fluid" could be added above but,
-                        I need more info on how flexboxes work-->
-                </div>
 
-                <div class="border border-black">
-                    <div class="mx-2">
-                        <div class="center-text">
-                            <h2>Event Title</h2>
-                            <p>Event description</p>
+                    <div class="border border-black">
+                        <div class="mx-2">
+                            <div class="center-text">
+                                <h2>{{ event.eventName }}</h2>
+                                <p>{{ event.eventPreviewText }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
