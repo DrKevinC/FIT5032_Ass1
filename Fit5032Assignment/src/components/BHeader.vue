@@ -1,5 +1,5 @@
 <script setup>
-import { isLoggedIn, isEventManager, currentUser, logout } from '@/loginData';
+import { isLoggedIn, isEventManager, currentUser, logout } from '@/data/loginData';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

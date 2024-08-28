@@ -44,7 +44,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { login } from '@/loginData';
+import { login } from '@/data/loginData';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
