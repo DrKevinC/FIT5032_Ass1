@@ -9,11 +9,11 @@ defineProps({
 </script>
 
 <template>
-    <div margin="10px" padding="10px">
+    <div>
         <div v-for="page in data.pages" :key="page">
             <div class="border border-black border-2 mb-4">
-                <div class="d-flex justify-content-center">
-                    <img width="800" height="200"
+                <div class="header-image-container">
+                    <img class="header-image"
                         :src=page.image
                         :alt=page.imageAlt />
                         <!--  class="img-fluid" could be added above but,
@@ -32,4 +32,14 @@ defineProps({
 </template>
 
 <style scoped>
+.header-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+.header-image-container {
+    width: 100%;
+    height: auto;
+}
 </style>

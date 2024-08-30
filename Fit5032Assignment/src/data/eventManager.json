@@ -1,0 +1,10 @@
+{
+    "pages": [
+        {
+            "image": "https://external-preview.redd.it/TtrJFv6u9FfLEeFBe2EyR3B4epk2s5UMwLHtB-d33p8.jpg?auto=webp&s=50008c03304b7344c6dbb5c8c75a72db4ebef673",
+            "heading": "Event Manager Page",
+            "bodyText": "This is the page that only event managers can access. Standard Users cannot access this page to manage events."
+        
+        }
+    ]
+}

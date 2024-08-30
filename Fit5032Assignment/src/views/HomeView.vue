@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <StaticPreview/>
-                <EventPreview :data="eventJSON" :length="3" :filter="false"/>
-                <DiscussionPreview :data="discussionJSON" :length="3" :filter="false" />
+                <EventPreview :data="events" :length="3" :filter="false"/>
+                <DiscussionPreview :data="discussions" :length="3" :filter="false" />
             </div>
         </div>
     </div>
@@ -15,8 +15,7 @@ import EventPreview from '@/components/EventPreview.vue';
 import StaticPreview from '@/components/StaticPreview.vue';
 import DiscussionPreview from '@/components/DiscussionPreview.vue';
 
-import discussionJSON from '@/data/discussions.json';
-import eventJSON from '@/data/events.json'
+import { events, discussions } from '@/data/generalData';
 </script>
 
 <style>

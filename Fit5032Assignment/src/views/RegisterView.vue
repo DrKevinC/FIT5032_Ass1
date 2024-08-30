@@ -25,6 +25,8 @@
                                         type="text"
                                         class="form-control"
                                         id="email"
+                                        @blur="() => validateEmail(true)"
+                                        @input="() => validateEmail(false)"
                                         v-model="registerFormData.email"
                                     />
                                     <div v-if="registerFormErrors.email" class="text-danger">{{ registerFormErrors.email }}</div>
@@ -32,7 +34,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <label for="password" class="form-label">Password</label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         id="password"
                                         @blur="() => validatePassword(true)"
@@ -44,7 +46,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         id="confirmPassword"
                                         @blur="() => validateConfirmPassword(true)"
@@ -116,6 +118,15 @@ const validateUsername = (blur) => {
     }
 }
 
+const validateEmail = (blur) => {
+    const emailCorrect = /^[^@]+@[^@]+\.[^@]+$/.test(registerFormData.value.email); // I copied this from a forum so it may be dodgy
+    if (blur) {
+        if (!emailCorrect) registerFormErrors.value.email = "Email format is invalid."
+    } else {
+        registerFormErrors.value.email = null;
+    }
+}
+
 const validatePassword = (blur) => {
   const password = registerFormData.value.password
   const minLength = 8
@@ -151,6 +162,7 @@ const submitRegisterForm = () => {
     validateUsername(true);
     validatePassword(true);
     validateConfirmPassword(true);
+    validateEmail(true);
     if(!registerFormErrors.value.username && !registerFormErrors.value.password && !registerFormErrors.value.confirmPassword){
         if (register(registerFormData)){
             if (login(registerFormData)){

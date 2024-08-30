@@ -14,6 +14,9 @@ function headerLogout(){
   <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
     <h1 class="text-center mt-4">Client Charity Banner</h1>
+    <div v-if="isLoggedIn" class="mx-5 text-center">
+      <b>{{ currentUser }} is logged in</b>
+    </div>
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
@@ -42,9 +45,6 @@ function headerLogout(){
         </li>
       </ul>
       <ul class="nav nav-pills">
-        <li v-if="isLoggedIn">
-          <h5>{{ currentUser }}</h5>
-        </li>
         <li v-if="!isLoggedIn" class="nav-item">
           <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
         </li>

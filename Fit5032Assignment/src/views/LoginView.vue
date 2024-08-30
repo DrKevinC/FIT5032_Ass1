@@ -20,7 +20,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <label for="password" class="form-label">Password</label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         id="password"
                                         v-model="loginFormData.password"

@@ -5,28 +5,36 @@
             "imageAlt": "Picture of a plant",
             "tags": [],
             "title":"Gardening MegaThread",
-            "body":"Here's where everyone can talk about gardening!"
+            "body":"Here's where everyone can talk about gardening!",
+            "rating": 4,
+            "votes": 10
         },
         {
             "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-zrW3AIlbYITY0plr4VZAv-EPabWyA2D8QP_fA9-phtbdUFinx59elDs9_QcU5QUieII&usqp=CAU",
             "imageAlt": "Image of some wool",
             "tags": [],
             "title": "Knitting megathread",
-            "body": "We all love knitting here! Lets share what we do."
+            "body": "We all love knitting here! Lets share what we do.",
+            "rating": 4.8,
+            "votes": 23
         },
         {
             "img":"https://columbiacountyrecoverykitchen.org/wp-content/uploads/2021/07/Carole_Esther_Stuart-2-300x263.jpg",
             "imageAlt": "Image of three people in a garden",
             "tags": [],
             "title": "Pam's Garden Party",
-            "body": "Come to Pam's garden party, bring a plate"
+            "body": "Come to Pam's garden party, bring a plate",
+            "rating": 2,
+            "votes": 14
         },
         {
             "img": "https://thefisheriesblog.com/wp-content/uploads/2012/12/49b5c-bathtubchristmascarp2.jpg",
             "imageAlt": "Carp in a bathtub",
             "tags": [],
             "title": "Indoor Carp Ranching",
-            "body": "For all your indoor ranching needs"
+            "body": "For all your indoor ranching needs",
+            "rating": 5,
+            "votes": 80
         }
     ]
 }

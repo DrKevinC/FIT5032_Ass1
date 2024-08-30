@@ -20,16 +20,16 @@ const props = defineProps({
 
 const trimmedDiscussions = computed(() => {
     if (props.length <= 0){
-        return props.data.discussions
+        return props.data
     } else {
-        return props.data.discussions.slice(0, props.length)
+        return props.data.slice(0, props.length)
     } 
 })
 
 </script>
 
 <template>
-    <div class="my-5">
+    <div class="mb-5">
         <div class="border border-black">
             <div class="border border-black border-1">
                 <div class="mx-2">
@@ -58,7 +58,7 @@ const trimmedDiscussions = computed(() => {
 </template>
 
 <style scoped>
-     .thumbnail {
+    .thumbnail {
       width: 100px; /* Adjust the size as needed */
       height: 100px; /* Ensure it's square */
       object-fit: cover; /* Ensures the image covers the square area without distortion */

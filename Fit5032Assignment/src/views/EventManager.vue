@@ -1,12 +1,16 @@
 <template>
-    <div class="about">
-        <h1>Event Manager</h1>
-        <p>This is a subheading</p>
+     <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <StaticPage :data="eventManagerJSON"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-// No script needed for now
+import eventManagerJSON from '@/data/eventManager.json';
+import StaticPage from '@/components/StaticPage.vue';
 </script>
 
 <style>

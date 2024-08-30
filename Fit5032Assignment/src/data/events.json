@@ -1,52 +1,55 @@
 {
     "events": [
         {
-            "user": "Admin",
+            "id": 1,
+            "username": "Admin",
             "organisation": "ElderConnect",
-            "eventId": 1,
-            "interactions": 10, 
-            "img": "#",
-            "imageAlt": "",
+            
             "eventName": "Event 1",
-            "eventPreviewText": "This is event 1! The first event, we'll be excited if everyone attends",
-            "eventBodyText": "This is event 1! The first event, we'll be excited if everyone attends. This is where we'll put extra information on the event as well",
-            "linkedDiscussions": [
-                {
-                    "discussionId": 1
-                }
-            ]
+            "bodyText": "This is event 1! The first event, we'll be excited if everyone attends. This is where we'll put extra information on the event as well. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lorem risus, consectetur egestas porta vitae, feugiat id nulla. Curabitur sollicitudin tellus vel ullamcorper feugiat. Proin lectus sem, porta quis mauris quis, porta aliquam augue. Integer sit amet eros eget metus accumsan gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse lobortis arcu et posuere sodales. Integer volutpat tellus ac mattis faucibus. Aliquam nec accumsan eros. Phasellus lacinia molestie sodales. Sed quis ex enim. Duis justo sem, accumsan in metus ac, tristique placerat ligula. Duis lacinia at lectus vel tempus. Praesent vitae blandit est. In hac habitasse platea dictumst. Nunc ultrices, dui in molestie vehicula, lorem justo pulvinar tellus, id feugiat enim justo et velit. In efficitur, risus et iaculis tincidunt, mi eros pulvinar tellus, non mollis ex purus vel nulla. Duis auctor sit amet neque id porta. Nam mattis, augue vitae consectetur fringilla, mauris velit rutrum sapien, et maximus purus turpis sed risus. Ut tempus congue velit sit amet fermentum. Donec eu feugiat elit. Donec ac vulputate diam. Donec venenatis molestie neque nec facilisis. Curabitur bibendum felis dapibus, tempor urna non, tristique nisi. Fusce at tempus ipsum. Maecenas sit amet tempus lorem, at pharetra metus. Aliquam at ultrices dolor. Donec viverra lacus ut fringilla mollis. Aliquam rutrum a nisi ac dictum. Nam ut lobortis orci. Curabitur at lectus eget nulla sagittis molestie. Quisque in tincidunt dui, quis placerat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at neque hendrerit, semper lorem sit amet, rutrum urna. Pellentesque lacus tortor, facilisis eget nisi at, sollicitudin mollis diam. Aenean mi est, volutpat ac mi vitae, auctor malesuada tortor. Nulla vitae erat diam. Aliquam accumsan aliquam lectus a fringilla. Vivamus ut libero leo. Donec molestie nibh id gravida feugiat. Suspendisse non diam in ex bibendum imperdiet. Aliquam posuere lacus sed purus consequat cursus. Pellentesque nisi dui, maximus sit amet scelerisque vel, malesuada non libero. Aenean vitae molestie augue. Maecenas tempor est id ante pharetra pharetra. Sed nec sollicitudin ex, eu tristique purus. Mauris at tortor eu purus tempor egestas. Curabitur pharetra odio eu lobortis mattis. Nulla fringilla velit elit, sed dictum nunc porta vitae. Donec ultrices consequat magna sit amet tincidunt. Aenean maximus, elit vel dictum ultricies, lacus magna sagittis leo, sit amet condimentum enim mi ac nulla. Ut vestibulum lectus eros, ut euismod mauris congue ut. Donec aliquam congue ligula, non accumsan nisl laoreet at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer consequat dignissim urna, quis efficitur purus hendrerit iaculis.Etiam at nibh et dolor pretium posuere. Proin ut felis mi. Duis eget velit porttitor ipsum tincidunt scelerisque. Nam commodo pellentesque leo a aliquet. Pellentesque tellus metus, ultrices a aliquet eu, finibus in elit. Aliquam finibus finibus sapien. Donec scelerisque semper sollicitudin. Aliquam congue urna a purus elementum porta. Nulla finibus in risus vitae consequat. Etiam ac justo turpis. Fusce ornare, mauris varius vestibulum gravida, felis libero feugiat dolor, id pulvinar eros magna nec risus. Suspendisse bibendum sed ex ac gravida.",
+            "previewText": "This is event 1! The first event, we'll be excited if everyone attends",
+            
+            "bannerImg": "https://wallpapers.com/images/hd/advanced-colors-wq6zc3x8ll4cs5b8.jpg",
+            "bannerImgAlt": "#",
+            "img": "https://thumbs.dreamstime.com/b/yellow-labrador-retriever-puppy-week-old-isolated-white-background-30787762.jpg",
+            "imageAlt": "",
+            
+            "ratings": 1, 
+            "avgRating": 3
         },
         {
-            "user": "Admin",
+            "id":2,
+            "username": "Admin",
             "organisation": "Kant's Kunduggery",
-            "eventId":2,
-            "interactions": 5,
+            
+            "eventName": "Rip Roaring through the meadow",
+            "previewText": "Lets go riding",
+            "bodyText": "I want to ride my bike recklessly though the flowers and grass of the lovely meadow!! Surely someone else will join me?",
+
+            "bannerImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz_ty1lmc41FjM2lJ4MExyfNuClKw40TwqMA&s",
+            "bannerImgAlt": "Riding",
             "img": "https://i.etsystatic.com/33550351/r/il/258e5c/3920872571/il_fullxfull.3920872571_68cs.jpg",
             "imageAlt": "Three babybels go a smorffing",
-            "eventName": "Smorffing at the Kunduggery",
-            "eventPreviewText": "Lets go smorffing",
-            "eventBodyText": "Lets go smorffing!!",
-            "linkedDiscussions": [
-                {
-                    "discussionId": 1
-                }
-            ]
+
+            "ratings": 5,
+            "avgRating": 4.5
         },
         {
-            "user": "Admin",
+            "id":3,
+            "username": "Admin",
             "organisation": "Bedroom Beekeeping United",
-            "eventId":3,
-            "interactions": 24,
-            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7I0FAV3lw_UzcgmAMwzebYERuHBzCWn5xhQ&s",
-            "imageAlt": "Bees",
+
             "eventName": "Bedroom Beekeeping Seminar",
-            "eventPreviewText": "Find out what's the buzz on bedroom beekeeping",
-            "eventBodyText": "Find out what's the buzz on bedroom beekeeping. Their soft buzzing will lull you to sleep and you'll gradually grow resistant to their poison.",
-            "linkedDiscussions": [
-                {
-                    "discussionId": 1
-                }
-            ]
+            "previewText": "Find out what's the buzz on bedroom beekeeping",
+            "bodyText": "Find out what's the buzz on bedroom beekeeping. Their soft buzzing will lull you to sleep and you'll gradually grow resistant to their poison.",
+            
+            "bannerImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7I0FAV3lw_UzcgmAMwzebYERuHBzCWn5xhQ&s",
+            "bannerImgAlt": "Honeycomb",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7I0FAV3lw_UzcgmAMwzebYERuHBzCWn5xhQ&s",
+            "imageAlt": "Honeycomb",
+
+            "ratings": 24,
+            "avgRating": 4.9
         }
     ]
 }
