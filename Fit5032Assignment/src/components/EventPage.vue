@@ -1,6 +1,13 @@
 <script setup>
 import { eventStorage } from '@/data/generalData';
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+// failsafe if no event is loaded
+const router = useRouter();
+if (!eventStorage.value){
+    router.push("/")
+}
 
 const event = eventStorage;
 const ratings = computed(() => event.value.ratings)

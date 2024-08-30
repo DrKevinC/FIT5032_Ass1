@@ -2,6 +2,14 @@
 import { eventStorage, discussionStorage } from '@/data/generalData';
 import { isLoggedIn, currentUser } from '@/data/loginData';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+// failsafe if no event is loaded
+const router = useRouter();
+if (!eventStorage.value || !discussionStorage){
+    router.push("/")
+}
+
 const event = eventStorage;
 const discussion = discussionStorage;
 

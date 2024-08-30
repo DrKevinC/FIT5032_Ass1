@@ -1,5 +1,12 @@
 <script setup>
 import { discussionStorage } from '@/data/generalData';
+import { useRouter } from 'vue-router';
+
+// failsafe if no event is loaded
+const router = useRouter();
+if (!discussionStorage){
+    router.push("/")
+}
 
 const discussion = discussionStorage;
 
