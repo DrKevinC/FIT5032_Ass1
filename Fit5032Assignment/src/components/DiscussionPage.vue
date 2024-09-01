@@ -2,7 +2,7 @@
 import { discussionStorage } from '@/data/generalData';
 
 const discussion = discussionStorage;
-const isEventLinked = discussion.isEventLinked;
+const isEventLinked = discussion.value.eventLinked;
 
 const stars = (rating) => {
     // I'm too lazy to code this dynamically

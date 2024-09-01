@@ -7,7 +7,7 @@ import { ref } from 'vue';
 const discussion = discussionStorage;
 const event = eventStorage;
 // If its eventLinked it needs to have the rating feature
-const isEventLinked = discussion.eventLinked;
+const isEventLinked = discussion.value.eventLinked;
 
 const comment = ref('');
 const currentRating = ref(0);
