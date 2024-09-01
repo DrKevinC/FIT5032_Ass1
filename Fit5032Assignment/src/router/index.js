@@ -12,6 +12,7 @@ import DiscussionOverview from '@/views/DiscussionOverview.vue'
 import ContactView from '@/views/ContactView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
+import { eventStorage, discussionStorage } from '@/data/generalData'
 
 const routes = [
   {
@@ -84,6 +85,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// router guards
+router.beforeEach((to, from) => {
+  if (to.name === 'Event' && (!eventStorage.value || !discussionStorage)) {
+    return { name: 'EventOverview'}
+  }
+  if (to.name ==='Discussion' && !discussionStorage){
+    return { name: 'DiscussionOverview'}
+  }
 })
 
 export default router
