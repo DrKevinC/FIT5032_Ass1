@@ -89,10 +89,10 @@ const router = createRouter({
 
 // router guards
 router.beforeEach((to, from) => {
-  if (to.name === 'Event' && (!eventStorage.value || !discussionStorage)) {
+  if (to.name === 'Event' && (!eventStorage.value || !discussionStorage.value)) {
     return { name: 'EventOverview'}
   }
-  if (to.name ==='Discussion' && !discussionStorage){
+  if (to.name ==='Discussion' && !discussionStorage.value){
     return { name: 'DiscussionOverview'}
   }
 })

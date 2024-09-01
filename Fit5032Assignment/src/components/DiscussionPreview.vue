@@ -1,4 +1,6 @@
 <script setup>
+import { discussionStorage } from '@/data/generalData';
+import router from '@/router';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -26,6 +28,11 @@ const trimmedDiscussions = computed(() => {
     } 
 })
 
+const openDiscussion = (discussion) => {
+    discussionStorage.value = discussion;
+    router.push("/discussion");
+}
+
 </script>
 
 <template>
@@ -38,15 +45,17 @@ const trimmedDiscussions = computed(() => {
             </div>    
 
             <div v-for="discussion in trimmedDiscussions" :key="discussion">
-                <div class="border border-black">
-                    <div class="container my-2">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <img :src=discussion.img :alt=discussion.imageAlt class="thumbnail">
-                            </div>
-                            <div class="col ms-3">
-                                <h5 class="mb-1">{{ discussion.title }}</h5>
-                                <p class="mb-0 text-muted">{{ discussion.body }}</p>
+                <div @click="openDiscussion(discussion)" >
+                    <div class="border border-black">
+                        <div class="container my-2">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img :src=discussion.img :alt=discussion.imageAlt class="thumbnail">
+                                </div>
+                                <div class="col ms-3">
+                                    <h5 class="mb-1">{{ discussion.title }}</h5>
+                                    <p class="mb-0 text-muted">{{ discussion.body }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

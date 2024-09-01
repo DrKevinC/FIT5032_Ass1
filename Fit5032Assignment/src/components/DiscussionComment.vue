@@ -3,8 +3,11 @@ import { eventStorage, discussionStorage } from '@/data/generalData';
 import { isLoggedIn, currentUser } from '@/data/loginData';
 import { ref } from 'vue';
 
-const event = eventStorage;
+
 const discussion = discussionStorage;
+const event = eventStorage;
+// If its eventLinked it needs to have the rating feature
+const isEventLinked = discussion.eventLinked;
 
 const comment = ref('');
 const currentRating = ref(0);
@@ -14,7 +17,9 @@ const commentErrors = ref({
 })
 
 const validateRating = (blur) => {
-    if (currentRating.value == 0){
+    if (!isEventLinked){
+        commentErrors.value.rating = null;
+    } else if (currentRating.value == 0){
         if (blur) commentErrors.value.rating = 'Rating has not been selected';
     } else {
         commentErrors.value.rating = null;
@@ -49,8 +54,10 @@ const sendComment = () => {
     validateComment(true);
     if(!commentErrors.value.body && !commentErrors.value.rating){
         // update event rating
-        event.value.avgRating = ((event.value.avgRating * event.value.ratings) + currentRating.value)/(event.value.ratings + 1)
-        event.value.ratings +=1;
+        if(isEventLinked){
+            event.value.avgRating = ((event.value.avgRating * event.value.ratings) + currentRating.value)/(event.value.ratings + 1)
+            event.value.ratings +=1;
+        }        
         // add the comment to the discussion
         discussion.value.addComment((' ' + currentUser.value).slice(1), currentRating.value, comment.value); // apparently a chrome issue workaround
         clearComment();
@@ -86,7 +93,7 @@ const sendComment = () => {
                     <div>
 
                     </div>
-                    <div class="star-rating">
+                    <div v-if="isEventLinked" class="star-rating">
                         <span v-for="(star, index) in 5"
                             :key="index"
                             @click="rating(index + 1)"

@@ -36,6 +36,7 @@ class Discussion {
         this.body = "Comments and reviews on " + event.eventName;
 
         this.comments = [];
+        this.eventLinked = true;
     }
     jsonDiscussion(discussionJSON){
         // image
@@ -46,6 +47,7 @@ class Discussion {
         this.body = discussionJSON.body;
 
         this.comments = [];
+        this.eventLinked = false;
     }
     addComment(username, rating, body) {
         this.comments.push(new Comment(username, rating, body))

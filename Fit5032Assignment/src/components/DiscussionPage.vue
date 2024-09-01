@@ -2,6 +2,7 @@
 import { discussionStorage } from '@/data/generalData';
 
 const discussion = discussionStorage;
+const isEventLinked = discussion.isEventLinked;
 
 const stars = (rating) => {
     // I'm too lazy to code this dynamically
@@ -51,8 +52,10 @@ const stars = (rating) => {
                     <div class="mx-2 my-1">
                         <b>User: {{ comment.username }}</b>
                         <p>{{ comment.text }}</p>
-                        <b> Rating: </b>
-                        <span>{{ stars(comment.rating) }}</span>
+                        <div v-if="isEventLinked">
+                            <b> Rating: </b>
+                            <span>{{ stars(comment.rating) }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
