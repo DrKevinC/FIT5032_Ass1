@@ -85,7 +85,7 @@ const sendComment = () => {
                     <p> Comment as {{ currentUser }}:</p>
                     <input type="text" 
                         class="form-control" 
-                        placeholder="What do you think of this event?"
+                        placeholder="What do you think of this topic?"
                         @blur="() => validateComment(true)"
                         @input="() => validateComment(false)"
                         v-model="comment">
