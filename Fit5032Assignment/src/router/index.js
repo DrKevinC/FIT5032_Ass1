@@ -13,6 +13,7 @@ import ContactView from '@/views/ContactView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
 import { eventStorage, discussionStorage } from '@/data/generalData'
+import { isEventManager } from '@/data/loginData'
 
 const routes = [
   {
@@ -94,6 +95,10 @@ router.beforeEach((to, from) => {
   }
   if (to.name ==='Discussion' && !discussionStorage.value){
     return { name: 'DiscussionOverview'}
+  }
+  // Router guard to prevent non-event-managers accessing event manager pages
+  if ((to.name === 'EventManager' || to.name === 'EventCreator') && !(isEventManager == true)) {
+    return {name: from.name}
   }
 })
 
