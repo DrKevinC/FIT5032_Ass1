@@ -1,49 +1,81 @@
 import { ref } from 'vue';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import db from "../firebase/init"
 
 export const isLoggedIn = ref(false);
 export const isEventManager = ref(false);
-export const currentUser = ref('');
+export const currentUser = ref(null);
+export const currentUserEmail = ref(null);
 
-const UserMap = {};
+// Login Behaviour:
+// - Multiple Users can have the same username
+// - If two users have the same email the first will be overwritten with the new user? 
+//      or it doesn't create a new account? (untested as of yet)
 
-class User {
-    constructor(username, email, password, isEventManager){
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.isEventManager = isEventManager;
+
+const Auth = getAuth();
+
+async function addUserToDatabase(username, email, isAdmin) {
+    try {
+        await setDoc(doc(db, "Users", email), {
+            email: email,
+            username: username,
+            isAdmin: isAdmin
+        })
+    } catch (error) {
+        console.log("Database interface failed: ", error.code)
     }
 }
 
-// Add 2 default Users
-UserMap['Admin'] = new User('Admin', 'email@email.com','House_123', true);
-UserMap['User'] = new User('User', 'email@email.com', 'User_123', false);
-
-// functions
-export function login(loginFormData){
-    if (loginFormData.value.username in UserMap){
-        let userToCheck = UserMap[loginFormData.value.username]
-        if (loginFormData.value.password === userToCheck.password){
-            isLoggedIn.value = true;
-            currentUser.value = userToCheck.username;
-            isEventManager.value = userToCheck.isEventManager;
-            return true
+async function retrieveUserDataFromDatabase(email) {
+    const docRef  = doc(db, 'Users', email);
+    try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            // docSnap.data() will be undefined in this case
+            throw new Error("Kevin Error: Email isn't in the database")
         }
+    } catch (error) {
+        console.log("Failed to retrieve user from database: ", error);
+        return null;
     }
-    return false // incorrect username of password
 }
 
-export function register(registerFormData){ // client side authentication hehe
-    if (registerFormData.value.username in UserMap){
-        return false // username is already in use - error
-    } else {
-        UserMap[registerFormData.value.username] = new User(registerFormData.value.username,registerFormData.value.email, registerFormData.value.password, registerFormData.value.isEventManager);
+export async function login(loginFormData){
+    try {
+        await signInWithEmailAndPassword(Auth, loginFormData.value.email, loginFormData.value.password);
+        console.log("Firebase Login Succesful");
+        // Retrieve user profile data
+        const userData = await retrieveUserDataFromDatabase(loginFormData.value.email);
+        isLoggedIn.value = true;
+        currentUser.value = userData.username;
+        isEventManager.value = userData.isAdmin;
         return true
+    } catch (error) {
+        console.log(error.code)
+        return false // incorrect username, password, or failed call
     }
 }
+
+export async function register(registerFormData){ // Messy but backend database registration is succesful
+    try {
+        await createUserWithEmailAndPassword(Auth, registerFormData.value.email, registerFormData.value.password);
+        console.log("Firebase Register Succesful!");
+        // Store user profile in the database
+        await addUserToDatabase(registerFormData.value.username, registerFormData.value.email, false) // default not admin
+        return true
+    } catch (error) {
+        console.log(error.code);
+        return false
+    }
+};
 
 export function logout(){
     isLoggedIn.value = false;
     isEventManager.value = false;
-    currentUser.value = '';
+    currentUser.value = null;
+    currentUserEmail.value = null
 }

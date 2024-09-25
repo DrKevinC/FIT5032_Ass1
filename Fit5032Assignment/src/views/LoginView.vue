@@ -8,14 +8,14 @@
                         <form @submit.prevent="formLogin">
                             <div class="row m-3">
                                 <div class="col-md-6 col-sm-6">
-                                    <label for="username" class="form-label">Username</label>
+                                    <label for="email" class="form-label">Email</label>
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="username"
-                                        v-model="loginFormData.username"
+                                        id="email"
+                                        v-model="loginFormData.email"
                                     />
-                                    <div v-if="loginFormErrors.username" class="text-danger">{{ loginFormErrors.username }}</div>
+                                    <div v-if="loginFormErrors.email" class="text-danger">{{ loginFormErrors.email }}</div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <label for="password" class="form-label">Password</label>
@@ -52,37 +52,38 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const loginFormData = ref({
-    username: '',
+    email: '',
     password: ''
 })
 
 const loginFormErrors = ref({
-    username: '',
+    email: '',
     password: '',
     general: ''
 })
 
 const clearLoginForm = () => {
     loginFormData.value = {
-        username: '',
+        email: '',
         password: ''
     }
     loginFormErrors.value = {
-        username: '',
+        email: '',
         password: '',
         general: ''
     }
 }
 
-const formLogin = () => {
+async function formLogin() {
     // Authenticate if correct
-    if (login(loginFormData) === true) {
+    loginFormErrors.value.general = 'Loading...';
+    if (await login(loginFormData) === true) {
         // succesful login
+        loginFormErrors.value.general = null; // clear loading prompt
         router.push("/");
     } else {
-        loginFormErrors.value.general = "Invalid username or password"
+        loginFormErrors.value.general = "Invalid email or password"
     }
-    
 }
 
 </script>

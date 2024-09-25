@@ -158,22 +158,25 @@ const validateConfirmPassword = (blur) => {
   }
 }
 
-const submitRegisterForm = () => {
+const submitRegisterForm = async () => {
+    registerFormErrors.value.general = 'Loading...'
     validateUsername(true);
     validatePassword(true);
     validateConfirmPassword(true);
     validateEmail(true);
     if(!registerFormErrors.value.username && !registerFormErrors.value.password && !registerFormErrors.value.confirmPassword){
-        if (register(registerFormData)){
-            if (login(registerFormData)){
+        if (await register(registerFormData)){
+            if (await login(registerFormData)){
+                registerFormErrors.value.general = null; // clear loading prompt
                 router.push("/")
             } else {
                 console.log("Something unexpectedly wrong happened to the form data");
             }
         } else {
-            registerFormErrors.value.username = 'The chosen username already exists'
+            registerFormErrors.value.email = 'The chosen email is already in use'
         }
     }
+    registerFormErrors.value.general = null; // clear loading prompt
 }
 
 </script>
