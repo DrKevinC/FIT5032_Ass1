@@ -10,8 +10,8 @@ export const currentUserEmail = ref(null);
 
 // Login Behaviour:
 // - Multiple Users can have the same username
-// - If two users have the same email the first will be overwritten with the new user? 
-//      or it doesn't create a new account? (untested as of yet)
+// - If two users have the same email an appropriate error is returned
+// - Database searches based on user emails
 
 
 const Auth = getAuth();
