@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+sendgrid.env
+.env
+api.js
