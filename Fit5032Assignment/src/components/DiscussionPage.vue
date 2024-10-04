@@ -1,25 +1,27 @@
 <script setup>
 import { discussionStorage } from '@/data/generalData';
+import CommentPrimeVue from './CommentPrimeVue.vue';
 
 const discussion = discussionStorage;
-const isEventLinked = discussion.value.eventLinked;
+// OLD DISCUSSION DISPLAY COMMENT FORMAT
+// const isEventLinked = discussion.value.eventLinked;
 
-const stars = (rating) => {
-    // I'm too lazy to code this dynamically
-    if (rating >= 5) {
-        return "★★★★★"
-    } else if (rating>= 4) {
-        return "★★★★☆"
-    } else if (rating >= 3) {
-        return "★★★☆☆"
-    } else if (rating >= 2) {
-        return "★★☆☆☆"
-    } else if (rating >= 1) {
-        return "★☆☆☆☆"
-    } else {
-        return "☆☆☆☆☆"
-    }
-}
+// const stars = (rating) => {
+//     // I'm too lazy to code this dynamically
+//     if (rating >= 5) {
+//         return "★★★★★"
+//     } else if (rating>= 4) {
+//         return "★★★★☆"
+//     } else if (rating >= 3) {
+//         return "★★★☆☆"
+//     } else if (rating >= 2) {
+//         return "★★☆☆☆"
+//     } else if (rating >= 1) {
+//         return "★☆☆☆☆"
+//     } else {
+//         return "☆☆☆☆☆"
+//     }
+// }
 </script>
 
 <template>
@@ -47,6 +49,7 @@ const stars = (rating) => {
                 </div>
             </div>
 
+            <!-- OLD DISCUSSION COMMENT DISPLAY FORMAT
             <div v-for="comment in discussion.comments" :key="comment">
                 <div class="border border-black">
                     <div class="mx-2 my-1">
@@ -58,7 +61,9 @@ const stars = (rating) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <CommentPrimeVue :comments="discussion.comments" :eventLinked="false"/>
         </div>
     </div>
 </template>
