@@ -3,6 +3,9 @@ import { discussionStorage } from '@/data/firestoreData';
 import router from '@/router';
 import { computed } from 'vue';
 
+// import DataTable from 'primevue/datatable';
+// import Column from 'primevue/column'
+
 const props = defineProps({
     data: {
         type: Object,
@@ -61,8 +64,15 @@ const openDiscussion = (discussion) => {
                     </div>
                 </div>
             </div>
-
         </div>
+        <!-- <div class="row mt-5">
+            <DataTable :value="trimmedDiscussions" tableStyle="min-width: 50rem">
+                <Column field="title" header="title"></Column>
+                <Column field="body" header="body"></Column>
+                <Column field="avgRating" header="rating"></Column>
+                <Column field="ratings" header="votes"></Column>
+            </DataTable>
+        </div> -->
     </div>
 </template>
 

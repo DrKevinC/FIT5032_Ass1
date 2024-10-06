@@ -11,10 +11,18 @@ export const discussions = ref([]);
 
 // DISCUSSIONS
 class Comment {
-    constructor(username, rating, text){
+    constructor(username, rating, text, timestamp=new Date()){
         this.username = username;
         this.rating = rating;
         this.text = text;
+        this.timestamp = timestamp;
+    }
+    createCommentList(commentList){
+        const comments = [];
+        for(let i = 0; i < commentList.length; i++) {
+            comments.push(new Comment(commentList[i].username, commentList[i].rating, commentList[i].text, commentList[i].timestamp));
+        }
+        return comments;
     }
 }
 

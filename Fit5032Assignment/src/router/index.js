@@ -12,7 +12,7 @@ import DiscussionOverview from '@/views/DiscussionOverview.vue'
 import ContactView from '@/views/ContactView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
-import { eventStorage, discussionStorage } from '@/data/generalData'
+import { eventStorage, discussionStorage } from '@/data/firestoreData'
 import { isEventManager } from '@/data/loginData'
 
 const routes = [
@@ -90,7 +90,7 @@ const router = createRouter({
 
 // router guards
 router.beforeEach((to, from) => {
-  if (to.name === 'Event' && (!eventStorage.value || !discussionStorage.value)) {
+  if (to.name === 'Event' && (!eventStorage.value )) { //|| !discussionStorage.value)) {
     return { name: 'EventOverview'}
   }
   if (to.name ==='Discussion' && !discussionStorage.value){

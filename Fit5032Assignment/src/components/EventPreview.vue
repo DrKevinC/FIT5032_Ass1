@@ -1,8 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { eventStorage, discussionStorage } from '@/data/generalData';
-
+import { eventStorage } from '@/data/firestoreData';
 const router = useRouter();
 
 const props = defineProps({
@@ -33,15 +32,15 @@ const trimmedEvents = computed(() => {
 
 const stars = (event) => {
     // I'm too lazy to code this dynamically
-    if (event.avgRating >= 5) {
+    if (event.totalRating/event.totalVotes >= 5) {
         return "★★★★★"
-    } else if (event.avgRating >= 4) {
+    } else if (event.totalRating/event.totalVotes >= 4) {
         return "★★★★☆"
-    } else if (event.avgRating >= 3) {
+    } else if (event.totalRating/event.totalVotes >= 3) {
         return "★★★☆☆"
-    } else if (event.avgRating >= 2) {
+    } else if (event.totalRating/event.totalVotes >= 2) {
         return "★★☆☆☆"
-    } else if (event.avgRating >= 1) {
+    } else if (event.totalRating/event.totalVotes >= 1) {
         return "★☆☆☆☆"
     } else {
         return "☆☆☆☆☆"
@@ -50,7 +49,6 @@ const stars = (event) => {
 
 const openEvent = (event) => {
     eventStorage.value = event;
-    discussionStorage.value = event.discussion;
     router.push("/event")
 }
 
@@ -70,20 +68,20 @@ const openEvent = (event) => {
                 <div @click="openEvent(event)">
                     <div class="header-image-container">
                         <img class="header-image"
-                            :src=event.bannerImg
-                            :alt=event.bannerImageAlt>
+                            :src=event.bannerImage
+                            :alt=event.bannerAlt>
                     </div>
 
                     <div class="border border-black">
                         <div class="mx-2">
                             <div class="center-text">
-                                <h2>{{ event.eventName }}</h2>
-                                <p>{{ event.previewText }}</p>
+                                <h2>{{ event.title }}</h2>
+                                <p>{{ event.preview }}</p>
                                 
                                 <div class="rating-container">
                                     <span>Rating:</span>
                                     <span class="star-span">{{ stars(event) }}</span>
-                                    <span>Votes: {{ event.ratings }}</span>
+                                    <span>Votes: {{ event.totalVotes }}</span>
                                 </div>
                             </div>
                         </div>

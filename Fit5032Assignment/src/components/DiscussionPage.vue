@@ -1,27 +1,15 @@
 <script setup>
-import { discussionStorage } from '@/data/generalData';
 import CommentPrimeVue from './CommentPrimeVue.vue';
+import { ref } from 'vue';
 
-const discussion = discussionStorage;
-// OLD DISCUSSION DISPLAY COMMENT FORMAT
-// const isEventLinked = discussion.value.eventLinked;
+const props = defineProps({
+    discussion: {
+        type: Object,
+        required: true
+    },
+});
 
-// const stars = (rating) => {
-//     // I'm too lazy to code this dynamically
-//     if (rating >= 5) {
-//         return "★★★★★"
-//     } else if (rating>= 4) {
-//         return "★★★★☆"
-//     } else if (rating >= 3) {
-//         return "★★★☆☆"
-//     } else if (rating >= 2) {
-//         return "★★☆☆☆"
-//     } else if (rating >= 1) {
-//         return "★☆☆☆☆"
-//     } else {
-//         return "☆☆☆☆☆"
-//     }
-// }
+const discussion = ref(props.discussion);
 </script>
 
 <template>
@@ -39,7 +27,7 @@ const discussion = discussionStorage;
                 <div class="container my-2">
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <img :src=discussion.img :alt=discussion.imageAlt class="thumbnail">
+                            <img :src=discussion.image :alt=discussion.imageAlt class="thumbnail">
                         </div>
                         <div class="col ms-3">
                             <h5 class="mb-1">{{ discussion.title }}</h5>
@@ -48,21 +36,6 @@ const discussion = discussionStorage;
                     </div>
                 </div>
             </div>
-
-            <!-- OLD DISCUSSION COMMENT DISPLAY FORMAT
-            <div v-for="comment in discussion.comments" :key="comment">
-                <div class="border border-black">
-                    <div class="mx-2 my-1">
-                        <b>User: {{ comment.username }}</b>
-                        <p>{{ comment.text }}</p>
-                        <div v-if="isEventLinked">
-                            <b> Rating: </b>
-                            <span>{{ stars(comment.rating) }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
             <CommentPrimeVue :comments="discussion.comments" :eventLinked="false"/>
         </div>
     </div>

@@ -10,7 +10,7 @@
 
 <script setup>
 import EventPreview from '@/components/EventPreview.vue';
-import { events } from '@/data/generalData';
+import { events } from '@/data/firestoreData';
 </script>
 
 <style>

@@ -15,7 +15,8 @@ import EventPreview from '@/components/EventPreview.vue';
 import StaticPreview from '@/components/StaticPreview.vue';
 import DiscussionPreview from '@/components/DiscussionPreview.vue';
 
-import { events, discussions } from '@/data/generalData';
+import { discussions } from '@/data/firestoreData';
+import { events } from '@/data/firestoreData';
 </script>
 
 <style>

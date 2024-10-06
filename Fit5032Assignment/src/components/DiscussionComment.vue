@@ -1,10 +1,16 @@
 <script setup>
-import { eventStorage, discussionStorage } from '@/data/generalData';
-import { isLoggedIn, currentUser } from '@/data/loginData';
+import { eventStorage, firestoreUpdateDiscussionComment } from '@/data/firestoreData';
+import { isLoggedIn, currentUser, currentUserEmail } from '@/data/loginData';
 import { ref } from 'vue';
 
+const props = defineProps({
+    discussion: {
+        type: Object,
+        required: true
+    }
+})
 
-const discussion = discussionStorage;
+const discussion = ref(props.discussion);
 const event = eventStorage;
 // If its eventLinked it needs to have the rating feature
 const isEventLinked = discussion.value.eventLinked;
@@ -52,14 +58,17 @@ const sendComment = () => {
     // check content
     validateRating(true);
     validateComment(true);
+    let eventPointer = null;
     if(!commentErrors.value.body && !commentErrors.value.rating){
         // update event rating
         if(isEventLinked){
-            event.value.avgRating = ((event.value.avgRating * event.value.ratings) + currentRating.value)/(event.value.ratings + 1)
-            event.value.ratings +=1;
+            event.value.totalRating += currentRating.value;
+            event.value.totalVotes +=1;
+            eventPointer = event;
         }        
         // add the comment to the discussion
-        discussion.value.addComment((' ' + currentUser.value).slice(1), currentRating.value, comment.value); // apparently a chrome issue workaround
+        discussion.value.addComment((' ' + currentUser.value).slice(1), (' ' + currentUserEmail.value).slice(1), currentRating.value, comment.value); // apparently a chrome issue workaround
+        firestoreUpdateDiscussionComment(discussion.value.title, JSON.stringify(discussion.value.comments), eventPointer); // Technically this should be await but I'm not overly concerned
         clearComment();
     }
 }

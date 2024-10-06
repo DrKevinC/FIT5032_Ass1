@@ -25,16 +25,24 @@ const filters = ref({
 });
 
 const filteredComments = computed(() => { // ADD ADVANCED FUNCTIONALITY TO SPECIFY CASE SENSIIVITY AND GREATER THAN, LESS THAN, AND EQUAL TO LATER
-    if (filters.value.rating == null || filters.value.rating == '') {
-        return props.comments.filter((obj) => 
-        obj.username.includes(filters.value.username) && 
-        obj.text.includes(filters.value.text))
-    } else {
-        return props.comments.filter((obj) => 
-        obj.username.includes(filters.value.username) && 
-        obj.text.includes(filters.value.text) &&
-        obj.rating == filters.value.rating) // BASIC FUNCTIONALITY TO SEARCH FOR A SPECIFIC RATING
-    }  
+    try {
+        if (props.comments.length == 0) {
+            return [];
+        } else if (filters.value.rating == null || filters.value.rating == '') {
+            return props.comments.filter((obj) => 
+            obj.username.includes(filters.value.username) && 
+            obj.text.includes(filters.value.text))
+        } else {
+            return props.comments.filter((obj) => 
+            obj.username.includes(filters.value.username) && 
+            obj.text.includes(filters.value.text) &&
+            obj.rating == filters.value.rating) // BASIC FUNCTIONALITY TO SEARCH FOR A SPECIFIC RATING
+        }  
+    } catch (error) {
+        console.error("Failed to compute Filtered Comments: ", error)
+        return []
+    }
+    
 }); 
 </script>
 
