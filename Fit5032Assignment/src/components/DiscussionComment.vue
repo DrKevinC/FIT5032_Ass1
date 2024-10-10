@@ -93,7 +93,8 @@ const sendComment = () => {
                 <div class="comment-content">
                     <p> Comment as {{ currentUser }}:</p>
                     <input type="text" 
-                        class="form-control" 
+                        class="form-control"
+                        spellcheck="true"
                         placeholder="What do you think of this topic?"
                         @blur="() => validateComment(true)"
                         @input="() => validateComment(false)"

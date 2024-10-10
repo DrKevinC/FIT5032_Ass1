@@ -124,5 +124,5 @@ const openEvent = (event) => {
         padding: 0;            /* Remove padding */
         font: inherit;         /* Inherit font styles */
         cursor: pointer;       /* Change cursor to pointer */
-    }
+}
 </style>
