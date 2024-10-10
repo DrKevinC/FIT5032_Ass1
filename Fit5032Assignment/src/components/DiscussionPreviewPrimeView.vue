@@ -56,7 +56,9 @@ const openDiscussion = (discussion) => {
                                     <img :src=discussion.image :alt=discussion.imageAlt class="thumbnail">
                                 </div>
                                 <div class="col ms-3">
-                                    <h5 class="mb-1">{{ discussion.title }}</h5>
+                                    <button class="covert-button">
+                                        <h5 class="mb-1" @click="openDiscussion(discussion)">{{ discussion.title }}</h5>
+                                    </button>
                                     <p class="mb-0 text-muted">{{ discussion.body }}</p>
                                 </div>
                             </div>
@@ -85,5 +87,12 @@ const openDiscussion = (discussion) => {
     .thumbnail-container {
       display: flex;
       align-items: center; /* Vertically centers the image and text */
+    }
+    .covert-button {
+        background: none;      /* Remove background */
+        border: none;          /* Remove border */
+        padding: 0;            /* Remove padding */
+        font: inherit;         /* Inherit font styles */
+        cursor: pointer;       /* Change cursor to pointer */
     }
 </style>

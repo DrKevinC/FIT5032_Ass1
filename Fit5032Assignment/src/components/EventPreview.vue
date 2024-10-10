@@ -75,7 +75,9 @@ const openEvent = (event) => {
                     <div class="border border-black">
                         <div class="mx-2">
                             <div class="center-text">
-                                <h2>{{ event.title }}</h2>
+                                <button class="covert-button">
+                                    <h2 @click="openEvent(event)">{{ event.title }}</h2>
+                                </button>
                                 <p>{{ event.preview }}</p>
                                 
                                 <div class="rating-container">
@@ -108,7 +110,7 @@ const openEvent = (event) => {
 }
 .header-image {
     width: 100%;
-    height: 100px;
+    height: 200px;
     overflow: hidden;
     position: relative;
 }
@@ -116,4 +118,11 @@ const openEvent = (event) => {
     width: 100%;
     height: auto;
 }
+.covert-button {
+        background: none;      /* Remove background */
+        border: none;          /* Remove border */
+        padding: 0;            /* Remove padding */
+        font: inherit;         /* Inherit font styles */
+        cursor: pointer;       /* Change cursor to pointer */
+    }
 </style>
