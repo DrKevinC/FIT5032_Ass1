@@ -11,7 +11,7 @@ sendGridMail.setApiKey(process.env.SENDGRID_API_KEY)
 const pathToAttachment = `./node_server/sendgrid/attachments/CookingMama.png`;
 const attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
-  export async function sendWelcomeMessage(recipient) {}
+  export async function sendWelcomeMessage(recipient) {
     const msg = {
       to: recipient,
       from: 'cheetah5i89@hotmail.com', // Change to your verified sender
