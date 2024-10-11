@@ -44,49 +44,6 @@ watch(() => [userInputs.value.searchName, userInputs.value.searchPlace, userInpu
     }
 });
 
-// const filteredSearchOutput = computed(() => {
-
-//     if (mapboxSearchOutput.value.length == 0 || userInputs.value.searchName == '' &&
-//         userInputs.value.searchPlace == '' &&
-//         userInputs.value.searchType == ''
-//     ){ // no search output or filter inputs
-//         return mapboxSearchOutput
-//     } else {
-//         return mapboxSearchOutput.value.filter((obj) => 
-//         obj.properties.feature_type.includes(userInputs.value.searchType) &&
-//         obj.properties.place_formatted.includes(userInputs.value.searchPlace) &&
-//         obj.properties.name.includes(userInputs.value.searchName))
-//     }
-// })
-
-
-// const geojson = {
-//   type: 'FeatureCollection',
-//   features: [
-    // {
-    //   type: 'Feature',
-    //   geometry: {
-    //     type: 'Point',
-    //     coordinates: [-77.032, 38.913]
-    //   },
-    //   properties: {
-    //     title: 'Mapbox',
-    //     description: 'Washington, D.C.'
-    //   }
-    // },
-//     {
-//       type: 'Feature',
-//       geometry: {
-//         type: 'Point',
-//         coordinates: [-122.414, 37.776]
-//       },
-//       properties: {
-//         title: 'Mapbox',
-//         description: 'San Francisco, California'
-//       }
-//     }
-//   ]
-// };
 
 function clearSearchAddress() {
     userInputs.value = {
