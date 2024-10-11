@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch} from 'vue';
 import axios from 'axios';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -22,12 +22,42 @@ const mapRef = ref(null);
 
 const userInputs = ref({
     addressSearch: '',
-    feature: null
+    feature: null,
+    searchName: '',
+    searchPlace: '',
+    searchType: ''
 });
 const userErrors = ref({
     addressSearch: null
 });
 const mapboxSearchOutput = ref([]);
+
+const filteredSearchOutput = ref([]);
+
+watch(() => [userInputs.value.searchName, userInputs.value.searchPlace, userInputs.value.searchType, mapboxSearchOutput.value], () => {
+    if (mapboxSearchOutput.value.length > 0){
+        filteredSearchOutput.value = mapboxSearchOutput.value.filter((obj) => 
+            obj.properties.feature_type.includes(userInputs.value.searchType) &&
+            obj.properties.place_formatted.includes(userInputs.value.searchPlace) &&
+            obj.properties.name.includes(userInputs.value.searchName)
+        );
+    }
+});
+
+// const filteredSearchOutput = computed(() => {
+
+//     if (mapboxSearchOutput.value.length == 0 || userInputs.value.searchName == '' &&
+//         userInputs.value.searchPlace == '' &&
+//         userInputs.value.searchType == ''
+//     ){ // no search output or filter inputs
+//         return mapboxSearchOutput
+//     } else {
+//         return mapboxSearchOutput.value.filter((obj) => 
+//         obj.properties.feature_type.includes(userInputs.value.searchType) &&
+//         obj.properties.place_formatted.includes(userInputs.value.searchPlace) &&
+//         obj.properties.name.includes(userInputs.value.searchName))
+//     }
+// })
 
 
 // const geojson = {
@@ -61,7 +91,10 @@ const mapboxSearchOutput = ref([]);
 function clearSearchAddress() {
     userInputs.value = {
         addressSearch: '',
-        feature: null
+        feature: null,
+        searchName: '',
+        searchPlace: '',
+        searchType: ''
     };
     userErrors.value = {
         addressSearch: null
@@ -189,16 +222,31 @@ onMounted(() => {
                 <div v-if="userErrors.addressSearch" class="text-danger mx-2">{{ userErrors.addressSearch }}</div> 
                 <button type="submit" 
                     class="btn btn-primary m-2"
-                    @click="submitAndSearchUserAddress()">Submit</button>
+                    @click="submitAndSearchUserAddress()">Search</button>
                 <button type="button" class="btn btn-secondary" @click="clearSearchAddress">Clear</button>
                 <div v-if="mapboxSearchOutput.length!=0">
                     <DataTable
-                        :value="mapboxSearchOutput"
+                        :value="filteredSearchOutput"
                         table-style="min-width: 50rem" 
                         removableSort 
                         paginator :rows="5" :rowsPerPageOptions="[1, 5, 10]">
-                        <Column field="properties.full_address" header="Address" sortable></Column>
-                        <Column header="Select Address">
+                        <template #empty> No Locations found </template>
+                        <Column field="properties.name" header="Name" sortable>
+                            <template #header>
+                                <input type="text" placeholder="Search by Name" v-model="userInputs.searchName"/>
+                            </template>
+                        </Column>
+                        <Column field="properties.feature_type" header="Type" sortable>
+                            <template #header>
+                                <input type="text" placeholder="Search by Type" v-model="userInputs.searchType"/>
+                            </template>
+                        </Column>
+                        <Column field="properties.place_formatted" header="Place" sortable>
+                            <template #header>
+                                <input type="text" placeholder="Search by Place" v-model="userInputs.searchPlace"/>
+                            </template>
+                        </Column>
+                        <Column field="name" header="Select Address">
                             <template #body="rowData">
                                 <button @click="addMarkerAndFocus(rowData.data)">Add Marker</button>
                             </template>
