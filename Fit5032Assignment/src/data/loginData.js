@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import db from "../firebase/init"
-// import axios from 'axios';
+import axios from 'axios';
 // import { sendWelcomeMessageSendGrid } from '../../api/sendgrid/init';
 
 export const isLoggedIn = ref(false);
@@ -68,7 +68,12 @@ export async function register(registerFormData){ // Messy but backend database 
         console.log("Firebase Register Succesful!");
         // Store user profile in the database
         await addUserToDatabase(registerFormData.value.username, registerFormData.value.email, false) // default not admin
-        // await sendWelcomeMessageSendGrid(registerFormData.value.email)
+        // send Welcome Email Message
+        await axios.get('http://localhost:3000/email/welcome', {
+            params: {
+                recipient: registerFormData.value.email
+            }
+        });
         return true
     } catch (error) {
         console.log(error.code);
