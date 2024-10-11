@@ -56,9 +56,9 @@ const openEvent = (event) => {
 
 <template>
     <div class="mb-5">
-        <div class="border border-black border-2">
+        <div class="border border-black border-1">
 
-            <div class="border border-black border-1">
+            <div class="border border-black border-bottom">
                 <div class="mx-2">
                     <h5>Events</h5>
                 </div>

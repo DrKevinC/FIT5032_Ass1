@@ -82,7 +82,8 @@ class Event {
         bannerImage,
         bannerAlt,
         totalRating,
-        totalVotes
+        totalVotes,
+        location = null
     ){
         // Event Basic Info
         this.title = title;
@@ -99,6 +100,11 @@ class Event {
         // ratings and votes
         this.totalRating = totalRating;
         this.totalVotes = totalVotes;
+        // location
+        this.location = location // default value
+    } 
+    setLocation(locationFeature){
+        this.location = locationFeature
     }
 }
 
@@ -153,7 +159,9 @@ export async function firestoreAddEvent(event){
         bannerAlt: event.bannerAlt,
         // ratings and votes
         totalRating: event.totalRating,
-        totalVotes: event.totalVotes
+        totalVotes: event.totalVotes,
+        // location
+        location: event.location
         })
         console.log(event.title, " Added to the database succesfully")
     } catch (error) {
@@ -254,7 +262,8 @@ export async function firestoreUpdateEvents (){
                 data.bannerImage,
                 data.bannerAlt,
                 data.totalRating,
-                data.totalVotes
+                data.totalVotes,
+                data.location
             ))
         })
         events.value = eventsArray;

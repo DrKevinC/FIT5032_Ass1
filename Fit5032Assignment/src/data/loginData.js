@@ -2,7 +2,8 @@ import { ref } from 'vue';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import db from "../firebase/init"
-import axios from 'axios';
+// import axios from 'axios';
+// import { sendWelcomeMessageSendGrid } from '../../api/sendgrid/init';
 
 export const isLoggedIn = ref(false);
 export const isEventManager = ref(false);
@@ -67,11 +68,7 @@ export async function register(registerFormData){ // Messy but backend database 
         console.log("Firebase Register Succesful!");
         // Store user profile in the database
         await addUserToDatabase(registerFormData.value.username, registerFormData.value.email, false) // default not admin
-        sendWelcomeEmail({
-            to_name: registerFormData.value.username,
-            from_name: "ElderConnect Team",
-            email: registerFormData.value.email
-        });
+        // await sendWelcomeMessageSendGrid(registerFormData.value.email)
         return true
     } catch (error) {
         console.log(error.code);
@@ -86,21 +83,21 @@ export function logout(){
     currentUserEmail.value = null
 }
 
-async function sendWelcomeEmail(data) {
-    // data required: to_name, data.email, from_name
-    try {
-        const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
-            service_id: "service_51lekst",
-            template_id: "template_04uc8tc",
-            user_id: "tHfurR7-wGdtwuWx_",
-            template_params: {
-                    to_name: data.to_name,
-                    message: data.email,
-                    from_name: data.from_name,  
-            }
-        });
-        console.log("Mail Send Success: ", response)
-    } catch (error) {
-        console.error('Error Sending Email Using SendJS', error)
-    }
-}
+// async function sendWelcomeEmail(data) {
+//     // data required: to_name, data.email, from_name
+//     try {
+//         const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
+//             service_id: "service_51lekst",
+//             template_id: "template_04uc8tc",
+//             user_id: "tHfurR7-wGdtwuWx_",
+//             template_params: {
+//                     to_name: data.to_name,
+//                     message: data.email,
+//                     from_name: data.from_name,  
+//             }
+//         });
+//         console.log("Mail Send Success: ", response)
+//     } catch (error) {
+//         console.error('Error Sending Email Using SendJS', error)
+//     }
+// }
