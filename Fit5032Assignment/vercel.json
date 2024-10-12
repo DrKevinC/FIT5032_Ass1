@@ -1,3 +1,20 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+    "version": 2,
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
+    "rewrites": [{ "source": "/(.*)", "destination": "/node_server" }],
+    "builds": [
+    {
+      "src": "node_server/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist",
+        "buildCommand": "npm run build",
+        "devCommand": "npm run dev"
+      }
+    }
+  ]
 }
