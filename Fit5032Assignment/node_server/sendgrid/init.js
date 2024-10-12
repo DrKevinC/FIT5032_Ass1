@@ -3,8 +3,9 @@
 import sendGridMail from '@sendgrid/mail'
 import dotenv from 'dotenv'
 import * as fs from 'fs';
-
 dotenv.config()  // Attaches env variables to process object
+
+console.log('Current directory:', process.cwd());
 
 sendGridMail.setApiKey(process.env.SENDGRID_API_KEY)
 
