@@ -1,7 +1,6 @@
 {
     "version": 2,
     "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
-    "rewrites": [{ "source": "/(.*)", "destination": "/node_server" }],
     "builds": [
     {
       "src": "node_server/server.js",
