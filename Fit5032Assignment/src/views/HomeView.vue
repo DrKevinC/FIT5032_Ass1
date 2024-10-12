@@ -5,6 +5,7 @@
                 <StaticPreview/>
                 <EventPreview :data="events" :length="3" :filter="false"/>
                 <DiscussionPreview :data="discussions" :length="3" :filter="false" />
+                <ChatbotComponent/>
             </div>
         </div>
     </div>
@@ -14,6 +15,7 @@
 import EventPreview from '@/components/EventPreview.vue';
 import StaticPreview from '@/components/StaticPreview.vue';
 import DiscussionPreview from '@/components/DiscussionPreview.vue';
+import ChatbotComponent from '@/components/ChatbotComponent.vue';
 
 import { discussions } from '@/data/firestoreData';
 import { events } from '@/data/firestoreData';
