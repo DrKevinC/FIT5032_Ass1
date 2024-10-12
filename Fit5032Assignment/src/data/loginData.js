@@ -6,9 +6,9 @@ import axios from 'axios';
 // import { sendWelcomeMessageSendGrid } from '../../api/sendgrid/init';
 
 export const isLoggedIn = ref(false);
-export const isEventManager = ref(false);
 export const currentUser = ref(null);
 export const currentUserEmail = ref(null);
+export const isEventManager = ref(false);
 
 // Login Behaviour:
 // - Multiple Users can have the same username
@@ -54,7 +54,8 @@ export async function login(loginFormData){
         const userData = await retrieveUserDataFromDatabase(loginFormData.value.email);
         isLoggedIn.value = true;
         currentUser.value = userData.username;
-        isEventManager.value = userData.isAdmin;
+        currentUserEmail.value = userData.email;
+        isEventManager.value = await checkEventManager()
         return true
     } catch (error) {
         console.log(error.code)
@@ -86,6 +87,22 @@ export function logout(){
     isEventManager.value = false;
     currentUser.value = null;
     currentUserEmail.value = null
+}
+
+export async function checkEventManager(){
+    if (!currentUserEmail.value){return false;}
+    try {
+        const query = await axios.get("https://isadmin-ltkqbp3c5q-uc.a.run.app", {
+            params: {
+                email: currentUserEmail.value
+            }
+        });
+        return query.data.isAdmin;
+    } catch (error) {
+        console.error("An error occurred when checking eventManager status: ", error)
+        return false;
+    }
+        
 }
 
 // async function sendWelcomeEmail(data) {
