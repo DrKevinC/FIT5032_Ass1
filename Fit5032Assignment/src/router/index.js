@@ -97,7 +97,7 @@ router.beforeEach((to, from) => {
     return { name: 'DiscussionOverview'}
   }
   // Router guard to prevent non-event-managers accessing event manager pages
-  if ((to.name === 'EventManager' || to.name === 'EventCreator') && !(isEventManager == true)) {
+  if ((to.name === 'EventManager' || to.name === 'EventCreator') && !(isEventManager.value == true)) {
     return {name: from.name}
   }
 })

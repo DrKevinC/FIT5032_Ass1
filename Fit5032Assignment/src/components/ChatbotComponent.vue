@@ -75,12 +75,11 @@
                         type="text" 
                         placeholder="Ask the chatbot" 
                         @input="validateChatInput()"
-                        @blur="validateChatInput()"
                         style="max-width:90%;"
                         v-model="userInput"/>
                     <div v-if="errors" class="text-danger m-2">{{ errors }}</div>
                     <button @click="submit()" class="btn btn-primary m-2">Send</button>
-                    <button @click="clearInput()" class="btn btn-secondary m-2">Clear</button> 
+                    <button @click="clearInput()" class="btn btn-secondary m-2">Clear</button>
                 </form>
             </div>
         </div>

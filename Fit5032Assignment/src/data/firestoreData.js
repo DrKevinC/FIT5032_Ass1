@@ -83,7 +83,8 @@ class Event {
         bannerAlt,
         totalRating,
         totalVotes,
-        location = null
+        location = null,
+        subscriberList = "[]"
     ){
         // Event Basic Info
         this.title = title;
@@ -102,6 +103,8 @@ class Event {
         this.totalVotes = totalVotes;
         // location
         this.location = location // default value
+        // subscriberList
+        this.subscriberList = JSON.parse(subscriberList)
     } 
     setLocation(locationFeature){
         this.location = locationFeature
@@ -161,7 +164,9 @@ export async function firestoreAddEvent(event){
         totalRating: event.totalRating,
         totalVotes: event.totalVotes,
         // location
-        location: event.location
+        location: event.location,
+        // subscriberList
+        subscriberList: JSON.stringify(event.subscriberList)
         })
         console.log(event.title, " Added to the database succesfully")
     } catch (error) {
@@ -215,6 +220,19 @@ export async function firestoreUpdateDiscussionComment (discussionTitle, new_com
     }
 }
 
+export async function firestoreUpdateEventSubscribers(eventTitle, new_subscribers) {
+    const docRef = doc(db, 'Events', eventTitle);
+    try {
+        // Race conditions could erase comments ~ Probably not a pressing issue
+        await updateDoc(docRef, {
+            subscriberList: JSON.stringify(new_subscribers)
+        })
+        console.log(eventTitle, " Updated succesfully");
+    } catch (error) {
+        console.log("Failed to retrieve event from database: ", error)
+    }
+}
+
 export async function firestoreGetEvent (eventTitle){
     const docRef = doc(db, 'Events', eventTitle);
     try {
@@ -263,7 +281,8 @@ export async function firestoreUpdateEvents (){
                 data.bannerAlt,
                 data.totalRating,
                 data.totalVotes,
-                data.location
+                data.location,
+                data.subscriberList
             ))
         })
         events.value = eventsArray;
@@ -338,6 +357,12 @@ export async function firestoreGetLinkedDiscussions(event){
 export function getLinkedDiscussions(event){
     return discussions.value.filter(discussion => 
         discussion.eventLinked === true && discussion.eventName === event.title
+    );
+}
+
+export function getUserEvents(userEmail){
+    return events.value.filter(event => 
+        event.email === userEmail
     );
 }
 

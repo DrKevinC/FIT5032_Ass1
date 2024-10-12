@@ -3,7 +3,7 @@ dotenv.config()  // Attaches env variables to process object
 
 import express from "express";
 import cors from "cors";
-import { sendWelcomeMessage } from './sendgrid/init.js';
+import { sendWelcomeMessage, sendBulk } from './sendgrid/init.js';
 import { askChatbot } from './chatbot/chatbot.js';
 
 const app = express();
@@ -15,8 +15,24 @@ app.get('/', (req, res) => {
 });
 
 app.get('/email/welcome', async (req, res) => {
-    await sendWelcomeMessage(req.query.recipient);
-    res.send("REQUEST SENT TO API");
+    try {
+        await sendWelcomeMessage(req.query.recipient);
+        res.send("Email Request sent to API");
+    } catch (error) {
+        console.error("Failed to send Bulk Email Request: ", error);
+        res.status(500).send("Failed");
+    }
+});
+
+app.get('/email/bulk', async (req, res) => {
+    try {
+        await sendBulk(JSON.parse(req.query.recipients), req.query.message);
+        res.send("Email Request sent to API")
+    } catch (error) {
+        console.error("Failed to send Bulk Email Request: ", error);
+        res.status(500).send("Failed");
+    }
+    
 })
 
 app.get('/chatbot/ask', async (req, res) => {
