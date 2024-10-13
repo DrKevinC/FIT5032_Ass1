@@ -8,6 +8,8 @@ export const discussionStorage = ref(null);
 export const events = ref([]);
 export const discussions = ref([]);
 
+export const online = ref(true);
+
 class Comment {
     constructor(username, email, rating, text, timestamp=new Date()){
         this.username = username;
@@ -84,7 +86,7 @@ class Event {
         totalRating,
         totalVotes,
         location = null,
-        subscriberList = "[]"
+        subscriberList = []
     ){
         // Event Basic Info
         this.title = title;
@@ -104,22 +106,22 @@ class Event {
         // location
         this.location = location // default value
         // subscriberList
-        this.subscriberList = JSON.parse(subscriberList)
+        this.subscriberList = subscriberList
     } 
     setLocation(locationFeature){
         this.location = locationFeature
     }
 }
 
-discussions.value.push(new Discussion("Gardening MegaThread",
-    "Where we talk about gardens",
-    "https://www.naturescolours.com.au/wp-content/uploads/2019/04/Monstera-Deliciosa-White-Ceramic-Pot-Set-210mm-1.jpg",
-    "Picture of a plant",
-    40,
-    10,
-    [new Comment("Admirabalis", null, 5, "I love the taste of seagrass"), new Comment("Servent of Wrath", null, 2, "The creatures of the soil wish to lay claim to all i set into the soil :/")],
-    false
-))
+// discussions.value.push(new Discussion("Gardening MegaThread",
+//     "Where we talk about gardens",
+//     "https://www.naturescolours.com.au/wp-content/uploads/2019/04/Monstera-Deliciosa-White-Ceramic-Pot-Set-210mm-1.jpg",
+//     "Picture of a plant",
+//     40,
+//     10,
+//     [new Comment("Admirabalis", null, 5, "I love the taste of seagrass"), new Comment("Servent of Wrath", null, 2, "The creatures of the soil wish to lay claim to all i set into the soil :/")],
+//     false
+// ))
 // const tempEvent = new Event(
 // "Bird Watching with Alan",
 // "I like to watch the birds.... Let's go together... I want to see... what they are doing? In their nests... where I can't see them, I wish to observe...",
@@ -282,13 +284,41 @@ export async function firestoreUpdateEvents (){
                 data.totalRating,
                 data.totalVotes,
                 data.location,
-                data.subscriberList
+                JSON.parse(data.subscriberList)
             ))
         })
+        if (eventsArray.length < 1){
+            throw Error("Fetch Success but no events? Offline Mode Activated")
+        }
         events.value = eventsArray;
-        console.log("Events Fetched Succesfully")
+        console.log("Events Fetched Succesfully");
+        online.value = true;
+        window.localStorage.setItem("events", JSON.stringify(eventsArray));
+        console.log("Events Local copy saved");
     } catch (error) {
-        console.error('Error fetching Events: ', error)
+        console.error('Error fetching Events: ', error);
+        const offlineEvents = JSON.parse(localStorage.getItem("events"));
+        const eventsArray = [];
+        offlineEvents.forEach((data) => {
+            eventsArray.push(new Event(
+                data.title,
+                data.body,
+                data.preview,
+                data.username,
+                data.email,
+                data.image,
+                data.imageAlt,
+                data.bannerImage,
+                data.bannerAlt,
+                data.totalRating,
+                data.totalVotes,
+                data.location,
+                data.subscriberList
+            ));
+        });
+        events.value = eventsArray;
+        online.value = false
+        console.log('Loaded offline events backup')
     }
 }
 
@@ -316,10 +346,38 @@ export async function firestoreUpdateDiscussions(){
                 }
             ));
         });
+        if (discussionsArray.length < 1){
+            throw Error("Fetch Success but no discussions? Offline Mode Activated")
+        }
         discussions.value = discussionsArray;
         console.log("Discussions Fetched Succesfully")
+        online.value = true;
+        window.localStorage.setItem("discussions", JSON.stringify(discussionsArray));
+        console.log("Discussions Local Copy saved")
     } catch (error) {
-        console.error('Error fetching Discussions: ', error)
+        console.log('Error fetching Discussions: ', error)
+        const offlineDiscussions = JSON.parse(localStorage.getItem("discussions"));
+        const discussionsArray = [];
+        offlineDiscussions.forEach((data) => {
+            discussionsArray.push(new Discussion(
+                data.title,
+                data.body,
+                data.image,
+                data.imageAlt,
+                data.totalRating,
+                data.totalVotes,
+                data.comments, // convert from string to JSON
+                data.eventLinked,
+                {
+                    title: data.eventName,
+                    email: data.eventEmail,
+                    username: data.eventUser
+                }
+            ));
+        });
+        discussions.value = discussionsArray;
+        online.value = false;
+        console.log('Loaded offline discussions backup')
     }
 }
 

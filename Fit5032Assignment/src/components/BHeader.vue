@@ -1,6 +1,7 @@
 <script setup>
 import { isLoggedIn, isEventManager, currentUser, logout } from '@/data/loginData';
 import { useRouter } from 'vue-router';
+import { online } from '@/data/firestoreData';
 
 const router = useRouter();
 function headerLogout(){
@@ -16,6 +17,9 @@ function headerLogout(){
     <h1 class="text-center mt-4">Client Charity Banner</h1>
     <div v-if="isLoggedIn" class="mx-5 text-center">
       <b>{{ currentUser }} is logged in</b>
+    </div>
+    <div v-if="!online" class="mx-5 text-center">
+      <b>Offline Mode - Changes cannot be saved</b><br/>Refresh to try and reconnect
     </div>
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
@@ -44,17 +48,19 @@ function headerLogout(){
           <router-link to="/eventManager" class="nav-link" active-class="active">Event Manager</router-link>
         </li>
       </ul>
-      <ul class="nav nav-pills">
-        <li v-if="!isLoggedIn" class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
-        </li>
-        <li v-if="!isLoggedIn" class="nav-item">
-          <router-link to="/register" class="nav-link" active-class="active">Register</router-link>
-        </li>
-        <li v-if="isLoggedIn">
-          <button @click="headerLogout" class="nav-link">Logout</button>
-        </li>
-      </ul>
+      <div v-if="online">
+        <ul class="nav nav-pills">
+          <li v-if="!isLoggedIn" class="nav-item">
+            <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+          </li>
+          <li v-if="!isLoggedIn" class="nav-item">
+            <router-link to="/register" class="nav-link" active-class="active">Register</router-link>
+          </li>
+          <li v-if="isLoggedIn">
+            <button @click="headerLogout" class="nav-link">Logout</button>
+          </li>
+        </ul>
+      </div>
     </header>
   </div>
 </template>
