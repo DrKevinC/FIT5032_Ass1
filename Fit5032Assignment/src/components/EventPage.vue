@@ -25,50 +25,25 @@ const stars = computed(() => {
 
 const printableContent = ref(null);
 
-// function downloadPDF() {
-//     const printableElement = printableContent.value;
-//     html2pdf()
-//         .from(printableElement)
-//         .save('event.pdf')
-//         .then(() => {
-//             console.log("PDF downloaded succesfully")
-//         })
-//         .catch(error => {
-//             console.error('Error generating PDF: ', error)
-//         })
-// }
-
-function downloadPDF2() {
+function downloadPDF() {
     const printableElement = printableContent.value;
-
-    // Wait for all images to load
-    const images = printableElement.getElementsByTagName('img');
-    const imageLoadPromises = Array.from(images).map(img => {
-        return new Promise((resolve) => {
-            if (img.complete) {
-                resolve();
-            } else {
-                img.onload = resolve;
-                img.onerror = resolve; // Resolve on error to avoid hanging
-            }
-        });
-    });
-
-    Promise.all(imageLoadPromises).then(() => {
-        html2pdf()
-            .from(printableElement)
-            .toPdf()
-            .get('pdf')
-            .then((pdf) => {
-                pdf.save('event.pdf');
-            })
-            .then(() => {
-                console.log("PDF downloaded successfully");
-            })
-            .catch(error => {
-                console.error('Error generating PDF: ', error);
-            });
-    });
+    const opt = {
+            margin: 0,
+            filename: 'Event.pdf',
+            image: { type: 'jpeg', quality: 0.20 },
+            html2canvas: { scale: 2,useCORS: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'p' }
+        };
+    html2pdf()
+        .set(opt)
+        .from(printableElement)
+        .save()
+        .then(() => {
+            console.log("PDF downloaded succesfully")
+        })
+        .catch(error => {
+            console.error('Error generating PDF: ', error)
+        })
 }
 
 </script>
@@ -94,7 +69,7 @@ function downloadPDF2() {
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <button class="btn btn-primary my-3" @click="downloadPDF2()">Download Event PDF</button>
+                <button class="btn btn-primary my-3" @click="downloadPDF()">Download Event PDF</button>
             </div>
         </div>
     </div>
