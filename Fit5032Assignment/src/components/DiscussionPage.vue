@@ -36,7 +36,7 @@ const discussion = ref(props.discussion);
                     </div>
                 </div>
             </div>
-            <CommentPrimeVue :comments="discussion.comments" :eventLinked="false"/>
+            <CommentPrimeVue :comments="discussion.comments" :eventLinked="discussion.eventLinked"/>
         </div>
     </div>
 </template>

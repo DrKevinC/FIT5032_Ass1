@@ -39,13 +39,15 @@ export async function sendWelcomeMessage(recipient) {
 }
 
 export async function sendBulk(recipients, message){
+  console.log(recipients)
   const msg = {
-    to: recipients,
+    to: "kcod0001@student.monash.edu", //
+    cc: recipients,
     from: 'cheetah5i89@hotmail.com', // Change to your verified sender
     subject: 'Welcome to ElderConnect',
     text: message 
   }
-  sendGridMail.sendMultiple(msg)
+  sendGridMail.send(msg)
   .then(() => {
     console.log('Bulk Email sent')
     return true;

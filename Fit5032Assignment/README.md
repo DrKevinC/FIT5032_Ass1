@@ -33,3 +33,8 @@ npm run build
 ```sh
 npm run lint
 ```
+## Start the backend server for access to GenAI and Email Services
+
+```sh
+npm start
+```
