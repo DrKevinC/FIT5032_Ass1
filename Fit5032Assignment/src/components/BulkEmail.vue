@@ -72,7 +72,7 @@ async function sendBulkEmail(){
                     <h5>Bulk Email</h5>
                 </div>
             </div>
-            <div class="border border-black">
+            <div v-if="props.events.length>0" class="border border-black">
                 <div class="mx-2">
                     <div v-for="event in props.events" :key="event" class="mx-2">
                         Event <b>{{ event.title }}</b> has {{ event.subscriberList.length }} subscribers
@@ -96,6 +96,11 @@ async function sendBulkEmail(){
                             <button @click="clearSelection()" class="btn btn-secondary m-2">Clear Selection</button>
                         </form>
                     </div>
+                </div>
+            </div>
+            <div v-else class="border border-black">
+                <div class="mx-2">
+                    No linked Events
                 </div>
             </div>
         </div>

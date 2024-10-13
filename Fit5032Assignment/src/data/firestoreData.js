@@ -7,6 +7,7 @@ export const discussionStorage = ref(null);
 
 export const events = ref([]);
 export const discussions = ref([]);
+export const users = ref([]);
 
 export const online = ref(true);
 
@@ -381,6 +382,23 @@ export async function firestoreUpdateDiscussions(){
     }
 }
 
+export async function firestoreUpdateUsers(){
+    // return all discussions
+    try {
+        const q = query(collection(db, 'Users'));
+        const querySnapshot = await getDocs(q);
+        const userArray = [];
+        querySnapshot.forEach((doc) => {
+            const data = doc.data()
+            userArray.push(data);
+        });
+        users.value = userArray;
+        console.log("Userlist retrieved succesfully")
+    } catch (error) {
+        console.log('Error fetching userList: ', error)    
+    }
+}
+
 export async function firestoreGetLinkedDiscussions(event){
     // return all discussions related to an event
     try {
@@ -427,3 +445,4 @@ export function getUserEvents(userEmail){
 // Initial syncing
 firestoreUpdateEvents();
 firestoreUpdateDiscussions();
+firestoreUpdateUsers();
